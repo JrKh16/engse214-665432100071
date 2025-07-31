@@ -1,0 +1,29 @@
+{
+  "comments": [
+    {
+      "id": "1",
+      "name": "pp",
+      "text": "ดีจ้า!"
+    },
+    {
+      "id": "2",
+      "name": "dassad",
+      "text": "dasdssd"
+    },
+    {
+      "id": "3",
+      "name": "fffff",
+      "text": "fffff"
+    },
+    {
+      "id": "4",
+      "name": "ggggg",
+      "text": "ggggg"
+    },
+    {
+      "id": "367f",
+      "name": "<img src=\"x\" onerror=\"alert('XSS')\">",
+      "text": "<img src=\"x\" onerror=\"alert('XSS')\">"
+    }
+  ]
+}
