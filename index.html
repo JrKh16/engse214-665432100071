@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าหลัก - Secure Coding Labs</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Thai characters -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for a dark, modern theme */
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #0d1117; /* GitHub Dark Background */
+            color: #c9d1d9; /* GitHub Dark Text */
+        }
+        .lab-card {
+            background-color: #161b22; /* GitHub Dark Secondary Background */
+            border: 1px solid #30363d;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .lab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .lab-card-icon {
+            font-size: 2.5rem;
+            color: #58a6ff; /* GitHub Blue */
+        }
+        .btn-primary {
+            background-color: #238636; /* GitHub Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #2ea043;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Secure Coding Labs</h1>
+            <p class="text-xl text-gray-400 mt-2">วิชา ENGSE214: Secure Coding</p>
+        </header>
+
+        <!-- Labs Grid Section -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Lab 1 Card -->
+            <div class="lab-card p-8">
+                <div>
+                    <div class="lab-card-icon mb-4">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Lab 1: XSS</h2>
+                    <p class="text-gray-400 mb-6">
+                        ฝึกฝนการป้องกันช่องโหว่ Cross-Site Scripting (XSS) ผ่านระบบคอมเมนต์จำลอง
+                    </p>
+                </div>
+                <a href="./lab1/" class="btn-primary">
+                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 1
+                </a>
+            </div>
+
+            <!-- Lab 2 Card -->
+            <div class="lab-card p-8">
+                <div>
+                    <div class="lab-card-icon mb-4">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Lab 2: Secure Profile</h2>
+                    <p class="text-gray-400 mb-6">
+                        แก้ไขช่องโหว่ IDOR และเรียนรู้การจัดเก็บรหัสผ่านอย่างปลอดภัย (Password Hashing)
+                    </p>
+                </div>
+                <a href="./lab2/" class="btn-primary">
+                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 2
+                </a>
+            </div>
+
+           <div class="lab-card p-8">
+                <div>
+                    <div class="lab-card-icon mb-4">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Lab 3: ???</h2>
+                    <p class="text-gray-400 mb-6">
+                        ???
+                    </p>
+                </div>
+                <a href="https://tenor.com/view/cat-cat-meme-side-eye-gif-13379006739361323297" class="btn-primary">
+                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 3
+                </a>
+            </div>
+
+           <div class="lab-card p-8">
+                <div>
+                    <div class="lab-card-icon mb-4">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Lab 4: ????</h2>
+                    <p class="text-gray-400 mb-6">
+                        ????
+                    </p>
+                </div>
+                <a href="https://tenor.com/view/cat-cat-meme-side-eye-gif-13379006739361323297" class="btn-primary">
+                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 4
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500">
+            <p>JrKh16 &copy; 2025</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
