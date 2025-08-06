@@ -2,124 +2,83 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าหลัก - Secure Coding Labs</title>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Thai characters -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Lab 2: SQL Injection Prevention</title>
     <style>
-        /* Custom styles for a dark, modern theme */
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #0d1117; /* GitHub Dark Background */
-            color: #c9d1d9; /* GitHub Dark Text */
-        }
-        .lab-card {
-            background-color: #161b22; /* GitHub Dark Secondary Background */
-            border: 1px solid #30363d;
-            border-radius: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .lab-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .lab-card-icon {
-            font-size: 2.5rem;
-            color: #58a6ff; /* GitHub Blue */
-        }
-        .btn-primary {
-            background-color: #238636; /* GitHub Green */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background-color: #2ea043;
-        }
+        body { font-family: sans-serif; background-color: #f4f7f9; color: #333; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .demo-area { border: 2px solid #dee2e6; border-radius: 10px; padding: 20px; margin-top: 20px; }
+        .demo-input { width: calc(100% - 24px); padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; margin-bottom: 10px; }
+        .demo-button { background: linear-gradient(45deg, #3498db, #2980b9); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-right: 10px; transition: all 0.3s ease; }
+        .demo-button.vulnerable { background: linear-gradient(45deg, #e74c3c, #c0392b); }
+        .demo-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3); }
+        .result-box { margin-top: 15px; padding: 15px; border: 2px solid #ddd; border-radius: 8px; min-height: 50px; background-color: #f8f9fa; font-family: 'Courier New', monospace; word-wrap: break-word; }
+        .vulnerable-output { background-color: #f8d7da; color: #721c24; }
+        .secure-output { background-color: #d4edda; color: #155724; }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <div class="container mx-auto px-4 py-12 md:py-20">
+    <div class="container">
+        <h1>🧪 Lab 2: SQL Injection Prevention</h1>
+        <p>ทดสอบการป้องกันการโจมตีแบบ SQL Injection โดยการลองใส่ <code>admin' OR '1'='1' --</code> ในช่อง Username</p>
 
-        <!-- Header Section -->
-        <header class="text-center mb-12 md:mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-white">Secure Coding Labs</h1>
-            <p class="text-xl text-gray-400 mt-2">วิชา ENGSE214: Secure Coding</p>
-        </header>
-
-        <!-- Labs Grid Section -->
-        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Lab 1 Card -->
-            <div class="lab-card p-8">
-                <div>
-                    <div class="lab-card-icon mb-4">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Lab 1: XSS</h2>
-                    <p class="text-gray-400 mb-6">
-                        ฝึกฝนการป้องกันช่องโหว่ Cross-Site Scripting (XSS) ผ่านระบบคอมเมนต์จำลอง
-                    </p>
-                </div>
-                <a href="./lab1/" class="btn-primary">
-                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 1
-                </a>
-            </div>
-
-            <!-- Lab 2 Card -->
-            <div class="lab-card p-8">
-                <div>
-                    <div class="lab-card-icon mb-4">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Lab 2: Secure Profile</h2>
-                    <p class="text-gray-400 mb-6">
-                        แก้ไขช่องโหว่ IDOR และเรียนรู้การจัดเก็บรหัสผ่านอย่างปลอดภัย (Password Hashing)
-                    </p>
-                </div>
-                <a href="./lab2/" class="btn-primary">
-                    <i class="fas fa-arrow-right mr-2"></i> เข้าสู่ Lab 2
-                </a>
-            </div>
-
-            <!-- Example Card (You can duplicate and edit this for more labs) -->
-            <div class="lab-card p-8 border-dashed">
-                 <div>
-                    <div class="lab-card-icon text-gray-600 mb-4">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-500 mb-2">Lab ต่อไป</h2>
-                    <p class="text-gray-500 mb-6">
-                        พื้นที่สำหรับ Lab ในอนาคต
-                    </p>
-                </div>
-                <div class="bg-gray-700 text-gray-400 p-3 rounded-md text-center font-mono">
-                    Coming Soon...
-                </div>
-            </div>
-
-        </main>
-
-        <!-- Footer -->
-        <footer class="text-center mt-16 text-gray-500">
-            <p>JrKh16 &copy; 2025</p>
-        </footer>
-
+        <div class="demo-area">
+            <h3>🔬 ทดสอบการล็อกอิน:</h3>
+            <input type="text" id="sqlUsername" class="demo-input" placeholder="Username">
+            <input type="password" id="sqlPassword" class="demo-input" placeholder="Password">
+            <br>
+            <button class="demo-button vulnerable" onclick="testSQLVulnerable()">❌ ทดสอบแบบไม่ปลอดภัย</button>
+            <button class="demo-button" onclick="testSQLSecure()">✅ ทดสอบแบบปลอดภัย</button>
+            
+            <h4>ผลลัพธ์ของ Query ที่จะถูกรัน:</h4>
+            <div id="sqlResult" class="result-box"></div>
+        </div>
     </div>
+
+    <script>
+        // ฟังก์ชันจำลองการล็อกอินแบบมีช่องโหว่
+        function testSQLVulnerable() {
+            const username = document.getElementById('sqlUsername').value;
+            const password = document.getElementById('sqlPassword').value;
+            const resultDiv = document.getElementById('sqlResult');
+            
+            // ❌ โค้ดที่มีช่องโหว่: นำค่าจาก input มาต่อกับ string ของ query โดยตรง
+            const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+            
+            // แสดงผล query ที่สร้างขึ้น
+            resultDiv.innerHTML = `
+                <strong>Vulnerable Query:</strong><br>
+                <code>${query}</code><br><br>
+                <small>⚠️ หากใส่ input เป็น "admin' OR '1'='1' --" จะทำให้เงื่อนไขหลัง AND เป็นจริงเสมอ และส่วนที่เหลือของ query จะกลายเป็นคอมเมนต์ ทำให้สามารถ bypass การตรวจสอบรหัสผ่านได้!</small>
+            `;
+            resultDiv.className = 'result-box vulnerable-output';
+        }
+
+        // ฟังก์ชันจำลองการล็อกอินแบบปลอดภัย
+        function testSQLSecure() {
+            const username = document.getElementById('sqlUsername').value;
+            const password = document.getElementById('sqlPassword').value;
+            const resultDiv = document.getElementById('sqlResult');
+
+            // ✅ โค้ดที่ปลอดภัย: ใช้ Parameterized Queries (จำลองโดยใช้ ? เป็น placeholder)
+            // ระบบฐานข้อมูลจะแยกคำสั่ง (query) ออกจากข้อมูล (parameters) ทำให้ input ที่เป็นอันตรายไม่ถูกนำไปรันเป็นส่วนหนึ่งของคำสั่ง
+            const queryTemplate = "SELECT * FROM users WHERE username = ? AND password = ?";
+            
+            // แสดงผล query ที่ปลอดภัย
+            resultDiv.innerHTML = `
+                <strong>Secure Query (Parameterized):</strong><br>
+                <code>${queryTemplate}</code><br><br>
+                <strong>Parameters:</strong>
+                <ol>
+                    <li>${username}</li>
+                    <li>${password}</li>
+                </ol>
+                <small>✅ Input ที่รับเข้ามาจะถูก التعامل (treat) เป็นข้อมูลเท่านั้น ไม่ใช่ส่วนหนึ่งของคำสั่ง SQL จึงป้องกันการโจมตีได้</small>
+            `;
+            resultDiv.className = 'result-box secure-output';
+        }
+    </script>
 
 </body>
 </html>

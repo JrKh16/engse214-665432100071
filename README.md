@@ -8,3 +8,7 @@ run json-server -> json-server --watch db.json
 
 ***
 
+*** LAB2 ***
+https://jrkh16.github.io/engse214-665432100071/lab2
+
+***
