@@ -1,37 +1,97 @@
-// 1. รอ DOM โหลดให้เสร็จก่อน
-document.addEventListener('DOMContentLoaded', () => {
-    // 2. เก็บ Element ที่ใช้ไว้ในตัวแปร
-    const commentsContainer = document.getElementById('comments-container');
-    const commentForm = document.getElementById('comment-form');
-    const nameInput = document.getElementById('name-input');
-    const commentInput = document.getElementById('comment-input');
+document.addEventListener("DOMContentLoaded", () => {
+  const commentsContainer = document.getElementById("comments-container");
+  const commentForm = document.getElementById("comment-form");
+  const nameInput = document.getElementById("name-input");
+  const commentInput = document.getElementById("comment-input");
 
-    // 3. สร้างฟังก์ชันสำหรับ Sanitize ข้อมูล
-    const sanitize = (str) => {
-        const temp = document.createElement('div');
-        // .textContent จะแปลงอักขระพิเศษโดยอัตโนมัติ
-        temp.textContent = str;
-        return temp.innerHTML;
+  /**
+   * Sanitizes a string to prevent XSS attacks by converting HTML entities.
+   * @param {string} str - The string to sanitize.
+   * @returns {string} The sanitized string.
+   */
+  const sanitize = (str) => {
+    const temp = document.createElement("div");
+    temp.textContent = str;
+    return temp.innerHTML;
+  };
+
+  // โค้ดส่วนนี้มีช่องโหว่
+  /**
+   * Displays a list of comments in the comments container.
+   * @param {Array<Object>} comments - An array of comment objects, each with 'name' and 'text' properties.
+   */
+  function displayComments(comments) {
+    const commentsContainer = document.getElementById("comments-container");
+    commentsContainer.innerHTML = "";
+    comments.forEach((comment) => {
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("list-group-item", "list-group-item-action", "flex-column", "align-items-start");
+
+      const authorElement = document.createElement("h5");
+      authorElement.classList.add("mb-1", "fw-bold", "text-primary");
+      authorElement.textContent = comment.name;
+
+      const textElement = document.createElement("p");
+      textElement.classList.add("mb-1", "text-break");
+      textElement.textContent = comment.text;
+
+      commentElement.appendChild(authorElement);
+      commentElement.appendChild(textElement);
+      commentsContainer.appendChild(commentElement);
+    });
+  }
+
+  // ✅ ฟังก์ชันดึงคอมเมนต์จาก JSON Server
+  /**
+   * Fetches comments from the JSON Server and displays them.
+   * @async
+   * @function fetchComments
+   * @returns {Promise<void>}
+   */
+  async function fetchComments() {
+    try {
+      const response = await fetch("http://localhost:3000/comments");
+      const data = await response.json();
+      displayComments(data); // ✅ แก้ตรงนี้
+    } catch (err) {
+      console.error("Failed to fetch comments:", err);
+    }
+  }
+
+  /**
+   * Handles the submission of the comment form.
+   * Prevents default form submission, validates input, posts new comment to JSON Server,
+   * clears input fields, and refreshes the comment list.
+   * @async
+   * @function commentForm.addEventListener
+   * @param {Event} e - The submit event object.
+   * @returns {Promise<void>}
+   */
+  commentForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const newComment = {
+      name: nameInput.value.trim(),
+      text: commentInput.value.trim(),
     };
-    // 4. แสดงคอมเมนต์ (displayComments)
-    function displayComments(comments) {
-        commentsContainer.innerHTML = '';
-        comments.forEach(comment => {
-            const commentElement = document.createElement('div');
-            // 2. ใช้ฟังก์ชัน sanitize กับข้อมูลที่มาจากผู้ใช้ก่อนแสดงผล
-            const safeName = sanitize(comment.name);
-            const safeText = sanitize(comment.text);
-            commentElement.innerHTML = `<strong>${safeName}:</strong> ${safeText}`;
-            commentsContainer.appendChild(commentElement);
-        });
+    if (!newComment.name || !newComment.text) {
+      alert("กรุณากรอกชื่อและความคิดเห็น");
+      return;
     }
-    // 5. โหลดคอมเมนต์จาก db.json
-    async function fetchComments() {
-        const response = await fetch('db.json');
-        const data = await response.json();
-        displayComments(data.comments);
+    try {
+      await fetch("http://localhost:3000/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      });
+      // ล้าง input และโหลดคอมเมนต์ใหม่
+      nameInput.value = "";
+      commentInput.value = "";
+      fetchComments();
+    } catch (err) {
+      console.error("Failed to post comment:", err);
     }
-    
-    // ... (ส่วน post data ไม่เปลี่ยนแปลง)
-    fetchComments();
+  });
+  fetchComments(); // โหลดคอมเมนต์เมื่อเปิดหน้า
 });
