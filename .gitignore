@@ -1,5 +1,7 @@
 # /index.html
 /lab4
-/lab3/pre-lab3/node_modules
-/lab3/pre-lab3/package-lock.json
-/lab3/pre-lab3/package.json
+/lab3/pre-lab3-security-66543210007-1/node_modules
+/lab3/pre-lab3-security-66543210007-1/package-lock.json
+/lab3/pre-lab3-security-66543210007-1/package.json
+/lab3/pre-lab3-security-66543210007-1/experiment5/cert.pem
+/lab3/pre-lab3-security-66543210007-1/experiment5/key.pem
